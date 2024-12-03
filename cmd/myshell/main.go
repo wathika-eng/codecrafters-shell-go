@@ -27,7 +27,7 @@ func main() {
 		}
 		if strings.HasPrefix(command, "echo") {
 			// Print the entire command
-			fmt.Println(command)
+			fmt.Println(command[5:])
 			continue // Go back to the prompt
 		}
 		fmt.Printf("%s: command not found\n", command)

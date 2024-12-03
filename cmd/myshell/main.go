@@ -8,6 +8,10 @@ import (
 	"strings"
 )
 
+const exit string = "exit 0"
+const echo string = "echo"
+const builtins string = "type"
+
 // Ensures gofmt doesn't remove the "fmt" import in stage 1 (feel free to remove this!)
 var _ = fmt.Fprint
 
@@ -21,14 +25,24 @@ func main() {
 		// Remove the newline character
 		command := reader[:len(reader)-1]
 
-		if command == "exit 0" {
+		if command == exit {
 			//fmt.Println("Exiting...")
 			break
 		}
-		if strings.HasPrefix(command, "echo") {
+		if strings.HasPrefix(command, echo) {
 			// Print the entire command
 			fmt.Println(command[5:])
 			continue // Go back to the prompt
+		}
+		if strings.HasPrefix(command, builtins) {
+			newBuiltins := command[5:]
+			//fmt.Println(newBuiltins)
+			if newBuiltins == "echo" || newBuiltins == "exit" || newBuiltins == "type" {
+				fmt.Printf("%v is a shell builtin\n", newBuiltins)
+			} else {
+				fmt.Printf("%s: not found\n", newBuiltins)
+			}
+			continue
 		}
 		fmt.Printf("%s: command not found\n", command)
 	}

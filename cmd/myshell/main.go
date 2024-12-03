@@ -21,7 +21,7 @@ func main() {
 		command := reader[:len(reader)-1]
 
 		if command == "exit 0" {
-			fmt.Println("Exiting...")
+			//fmt.Println("Exiting...")
 			break
 		}
 		fmt.Printf("%s: command not found\n", command)

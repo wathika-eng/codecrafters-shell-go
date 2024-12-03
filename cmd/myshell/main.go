@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 // Ensures gofmt doesn't remove the "fmt" import in stage 1 (feel free to remove this!)
@@ -23,6 +24,11 @@ func main() {
 		if command == "exit 0" {
 			//fmt.Println("Exiting...")
 			break
+		}
+		if strings.HasPrefix(command, "echo") {
+			// Print the entire command
+			fmt.Println(command)
+			continue // Go back to the prompt
 		}
 		fmt.Printf("%s: command not found\n", command)
 	}

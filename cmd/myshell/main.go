@@ -20,7 +20,7 @@ func main() {
 		// Remove the newline character
 		command := reader[:len(reader)-1]
 
-		if command == "exit" {
+		if command == "exit 0" {
 			fmt.Println("Exiting...")
 			break
 		}
